@@ -39,7 +39,7 @@ class SanitiserService
                 break;
 
             case "full_special_chars":
-                $result = filter_var($data, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $result = filter_var($data, FILTER_SANITIZE_FULL_SPECIAL_CHARS,FILTER_FLAG_NO_ENCODE_QUOTES);
                 break;
 
             case "url":
@@ -47,7 +47,7 @@ class SanitiserService
                 break;
 
             case "string":
-                $result = filter_var($data, FILTER_SANITIZE_STRING);
+                $result = filter_var($data, FILTER_SANITIZE_STRING,FILTER_FLAG_NO_ENCODE_QUOTES);
                 break;
         }
 
