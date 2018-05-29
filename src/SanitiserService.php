@@ -1,6 +1,6 @@
 <?php
 
-namespace Devtoolboxuk\SanitiserService;
+namespace Devtoolboxuk\DataSanitiser;
 
 class SanitiserService
 {
