@@ -18,17 +18,20 @@ class SanitiserService
                 break;
 
             case "encoded":
+
                 $result = filter_var($data, FILTER_SANITIZE_ENCODED);
                 break;
 
             case "number_float":
             case "float":
                 $result = filter_var($data, FILTER_SANITIZE_NUMBER_FLOAT);
+
                 break;
 
             case "number_int":
             case "int":
                 $result = filter_var($data, FILTER_SANITIZE_NUMBER_INT);
+
                 break;
 
             case "special_chars":
@@ -48,11 +51,8 @@ class SanitiserService
                 break;
         }
 
-        if (!$result) {
-            throw new \InvalidArgumentException(sprintf("%s is not a valid input for type %s", $data, $type));
-        }
 
-        return $data;
+        return $result;
     }
 
     private function stringLength($data, $stringLength = null)
