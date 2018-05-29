@@ -1,0 +1,24 @@
+{
+  "name": "devtoolboxuk/DataSanitiser",
+  "description": "Data Sanitiser",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "": "src/",
+      "Devtoolboxuk\\DataSanitiser\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Rob Wilson",
+      "email": "rob@dev-toolbox.co.uk"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "ext-curl": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.*"
+  }
+}
