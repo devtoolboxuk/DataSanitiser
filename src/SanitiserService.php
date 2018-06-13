@@ -5,9 +5,20 @@ namespace Devtoolboxuk\DataSanitiser;
 class SanitiserService
 {
 
+
+    public function sanitiseDisplay($data)
+    {
+        return htmlentities(utf8_decode($this->cleanString($data)));
+    }
+
+    private function cleanString($data)
+    {
+        return stripslashes(strip_tags(trim($data)));
+    }
+
     public function sanitise($data, $type = 'special_chars', $stringLength = null)
     {
-        $data = stripslashes(strip_tags(trim($data)));
+        $data = $this->cleanString($data);
         $data = $this->stringLength($data, $stringLength);
 
         $result = null;
@@ -39,7 +50,7 @@ class SanitiserService
                 break;
 
             case "full_special_chars":
-                $result = filter_var($data, FILTER_SANITIZE_FULL_SPECIAL_CHARS,FILTER_FLAG_NO_ENCODE_QUOTES);
+                $result = filter_var($data, FILTER_SANITIZE_FULL_SPECIAL_CHARS, FILTER_FLAG_NO_ENCODE_QUOTES);
                 break;
 
             case "url":
@@ -47,7 +58,7 @@ class SanitiserService
                 break;
 
             case "string":
-                $result = filter_var($data, FILTER_SANITIZE_STRING,FILTER_FLAG_NO_ENCODE_QUOTES);
+                $result = filter_var($data, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
                 break;
         }
 
