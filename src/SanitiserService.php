@@ -7,7 +7,7 @@ class SanitiserService
 
     public function sanitise($data, $type = 'special_chars', $stringLength = null)
     {
-        $data = strip_tags(trim($data));
+        $data = stripslashes(strip_tags(trim($data)));
         $data = $this->stringLength($data, $stringLength);
 
         $result = null;
