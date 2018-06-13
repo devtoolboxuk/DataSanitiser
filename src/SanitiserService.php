@@ -4,8 +4,6 @@ namespace Devtoolboxuk\DataSanitiser;
 
 class SanitiserService
 {
-
-
     public function sanitiseDisplay($data)
     {
         return htmlentities(utf8_decode($this->cleanString($data)));
@@ -13,12 +11,12 @@ class SanitiserService
 
     private function cleanString($data)
     {
-        return stripslashes(strip_tags(trim($data)));
+        return strip_tags(trim($data));
     }
 
     public function sanitise($data, $type = 'special_chars', $stringLength = null)
     {
-        $data = $this->cleanString($data);
+        $data = stripslashes($this->cleanString($data));
         $data = $this->stringLength($data, $stringLength);
 
         $result = null;
