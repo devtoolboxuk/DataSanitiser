@@ -4,19 +4,11 @@ namespace Devtoolboxuk\DataSanitiser;
 
 class SanitiserService
 {
-    /**
-     * @param $data
-     * @param bool $decode
-     * @return string
-     */
-    public function sanitiseDisplay($data, $decode = false)
+    public function sanitiseDisplay($data)
     {
-        $data = utf8_decode($this->cleanString($data));
-        if ($decode) {
-            return htmlspecialchars_decode($data);
-        } else {
-            return htmlentities($data);
-        }
+        $data = $this->cleanString($data);
+        $data = mb_convert_encoding($data, "utf-8", "HTML-ENTITIES");
+        return htmlspecialchars_decode(utf8_encode($data));
     }
 
     /**
@@ -25,7 +17,8 @@ class SanitiserService
      */
     private function cleanString($data)
     {
-        return strip_tags(trim($data));
+        $data = implode("", explode("\\", $data));
+        return utf8_decode(strip_tags(trim(stripslashes($data))));
     }
 
     /**
@@ -36,7 +29,7 @@ class SanitiserService
      */
     public function sanitise($data, $type = 'special_chars', $stringLength = null)
     {
-        $data = stripslashes($this->cleanString($data));
+        $data = $this->cleanString($data);
         $data = $this->stringLength($data, $stringLength);
 
         $result = null;
