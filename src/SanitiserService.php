@@ -4,16 +4,36 @@ namespace Devtoolboxuk\DataSanitiser;
 
 class SanitiserService
 {
-    public function sanitiseDisplay($data)
+    /**
+     * @param $data
+     * @param bool $decode
+     * @return string
+     */
+    public function sanitiseDisplay($data, $decode = false)
     {
-        return htmlentities(utf8_decode($this->cleanString($data)));
+        $data = utf8_decode($this->cleanString($data));
+        if ($decode) {
+            return htmlspecialchars_decode($data);
+        } else {
+            return htmlentities($data);
+        }
     }
 
+    /**
+     * @param $data
+     * @return string
+     */
     private function cleanString($data)
     {
         return strip_tags(trim($data));
     }
 
+    /**
+     * @param $data
+     * @param string $type
+     * @param null $stringLength
+     * @return mixed|null
+     */
     public function sanitise($data, $type = 'special_chars', $stringLength = null)
     {
         $data = stripslashes($this->cleanString($data));
@@ -64,6 +84,11 @@ class SanitiserService
         return $result;
     }
 
+    /**
+     * @param $data
+     * @param null $stringLength
+     * @return bool|string
+     */
     private function stringLength($data, $stringLength = null)
     {
         if ($stringLength) {
