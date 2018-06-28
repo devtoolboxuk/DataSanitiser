@@ -11,6 +11,11 @@ class SanitiserService
         return htmlspecialchars_decode(utf8_encode($data));
     }
 
+    public function sanitiseForCSV($string, $delimiter = "|")
+    {
+        return trim(str_replace(array($delimiter, "\n", "\r", "\t"), " ", $string));
+    }
+
     /**
      * @param $data
      * @return string
