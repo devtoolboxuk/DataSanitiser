@@ -8,7 +8,7 @@ class SanitiserService
     {
         $data = $this->cleanString($data);
         $data = mb_convert_encoding($data, "utf-8", "HTML-ENTITIES");
-        return htmlspecialchars_decode(utf8_encode($data));
+        return htmlspecialchars_decode($data);
     }
 
     public function sanitiseForCSV($string, $delimiter = "|")
