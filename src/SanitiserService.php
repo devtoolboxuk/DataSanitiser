@@ -4,6 +4,10 @@ namespace Devtoolboxuk\DataSanitiser;
 
 class SanitiserService
 {
+    /**
+     * @param $data
+     * @return string
+     */
     public function sanitiseDisplay($data)
     {
         $data = $this->cleanString($data);
@@ -11,6 +15,11 @@ class SanitiserService
         return htmlspecialchars_decode($data);
     }
 
+    /**
+     * @param $string
+     * @param string $delimiter
+     * @return string
+     */
     public function sanitiseForCSV($string, $delimiter = "|")
     {
         return trim(str_replace(array($delimiter, "\n", "\r", "\t"), " ", $string));
@@ -45,7 +54,6 @@ class SanitiserService
                 break;
 
             case "encoded":
-
                 $result = filter_var($data, FILTER_SANITIZE_ENCODED);
                 break;
 
