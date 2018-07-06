@@ -23,7 +23,7 @@ class SanitiserService
     private function cleanString($data)
     {
         $data = implode("", explode("\\", $data));
-        return utf8_decode(strip_tags(trim(stripslashes($data))));
+        return strip_tags(trim(stripslashes($data)));
     }
 
     /**
