@@ -11,7 +11,7 @@ class SanitiserService
     public function sanitiseDisplay($data)
     {
         $data = $this->cleanString($data);
-        $data = mb_convert_encoding($data, "utf-8", "HTML-ENTITIES");
+        $data = mb_convert_encoding($data, "utf-8", "auto");
         return htmlspecialchars_decode($data);
     }
 
