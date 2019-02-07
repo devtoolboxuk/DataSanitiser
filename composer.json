@@ -1,11 +1,11 @@
 {
-  "name": "devtoolboxuk/DataSanitiser",
+  "name": "devtoolboxuk/datasanitiser",
   "description": "Data Sanitiser",
   "type": "library",
   "autoload": {
     "psr-4": {
       "": "src/",
-      "Devtoolboxuk\\DataSanitiser\\": "src/"
+      "devtoolboxuk\\datasanitiser\\": "src/"
     }
   },
   "authors": [
